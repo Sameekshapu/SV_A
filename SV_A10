@@ -1,0 +1,17 @@
+//Question : 10
+module fork_test;
+  initial
+    begin
+      for(int j=0; j<3; j++)
+        begin
+          fork
+            $display(j);
+          join_none
+        end
+    end
+endmodule
+
+//output
+// 3
+// 3
+// 3
