@@ -1,0 +1,30 @@
+//question : 8
+class hello;
+
+   rand bit [4:0] A[]={2,5,7,9,1,6,3};
+ 
+        constraint c1 {
+          A.size inside [1:10]; }
+   
+        constraint c2 {
+            foreach(A[i])
+              (i>0)->A[i]>A[i-1]; }
+
+    endclass
+
+
+    hello tree;
+
+module hii;
+    initial begin
+
+        tree = new();
+
+      repeat(1) begin
+        if(tree.randomize())
+              $display("A is %p",tree.A);
+        end
+
+    end
+endmodule
+
