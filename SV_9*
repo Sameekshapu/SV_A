@@ -1,0 +1,29 @@
+module ice;
+      bit clk,a,b,valid;
+  
+      always #5 clk = ~clk;
+      
+      initial begin
+        valid=1; a=1; b=1;
+      #15 a=1; b=1;
+#25 a=1; b=1;
+#35 a=1; b=1;
+#45 a=0; b=1;
+#55 a=0; b=1;
+#65 a=0; b=1;
+#75 a=1; b=1;
+#85 a=0; b=0;
+        valid=0;
+       #15 a=1; b=0;
+       #100 $finish;
+      end
+  
+      property cream;
+        @(posedge clk) valid |=> (a ##3 b);
+      endproperty
+  a_1: assert property(cream)
+         $info("pass");
+         else
+          $info("fail");
+ 
+     endmodule
